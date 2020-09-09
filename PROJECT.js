@@ -18,17 +18,20 @@ for (item of buttons) {
         } else if (e.target.value == "=") {
             result.value = eval(screenValue);
             equalPresed = true;
-        } else if (equalPresed && !(e.target.value == "+" || "-" || '*' || "/")) {
-            resultValue = '';
-            result.value = resultValue;
-            screenValue = '';
-            screen.value = screenValue;
-            screenValue += e.target.value;
-            screen.value = screenValue;
-            equalPresed = false;
-        } else if (equalPresed && (e.target.value == "+" || "-" || '*' || "/")) {
-            screenValue += e.target.value;
-            screen.value = screenValue;
+        } else if (equalPresed) {
+            if (e.target.value == "+" || e.target.value == "-" || e.target.value == '*' || e.target.value == "/") {
+                screenValue += e.target.value;
+                screen.value = screenValue;
+                equalPresed = false;
+            } else {
+                resultValue = '';
+                result.value = resultValue;
+                screenValue = '';
+                screen.value = screenValue;
+                screenValue += e.target.value;
+                screen.value = screenValue;
+                equalPresed = false;
+            }
         } else {
             screenValue += e.target.value;
             screen.value = screenValue;
